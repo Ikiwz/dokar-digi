@@ -3,8 +3,7 @@
 @section('content')
   <!-- Page Heading -->
   <h1 class="h3 mb-4 text-gray-800">
-    <i class="fas fa-file-alt mr-2"></i>
-    {{ $title }}
+    <i class="fas fa-file-alt mr-2"></i> {{ $title }}
   </h1>
 
   <div class="card">
@@ -49,13 +48,11 @@
                 <td class="text-center">{{ \Carbon\Carbon::parse($surat->tanggal_surat)->format('d-m-Y') }}</td>
                 <td>{{ $surat->ditujukan }}</td>
                 <td class="text-center">
-                  <!-- Tombol Lihat selalu tampil -->
                   <a href="{{ asset('storage/' . $surat->file_surat) }}" target="_blank" class="btn btn-sm btn-info"
                     title="Lihat">
                     <i class="fas fa-eye"></i>
                   </a>
 
-                  {{-- Hanya untuk Admin --}}
                   @if (auth()->user()->jabatan === 'Admin')
                     <a href="{{ asset('storage/' . $surat->file_surat) }}" download class="btn btn-sm btn-secondary"
                       title="Unduh">
@@ -66,14 +63,10 @@
                       <i class="fas fa-edit"></i>
                     </a>
 
-                    <form action="{{ route('surat.destroy', $surat->id) }}" method="POST" class="d-inline"
-                      onsubmit="return confirm('Yakin ingin menghapus surat ini?');">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </form>
+                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                      data-target="#modalDeleteSurat{{ $surat->id }}" title="Hapus">
+                      <i class="fas fa-trash"></i>
+                    </button>
                   @endif
                 </td>
               </tr>
@@ -83,4 +76,9 @@
       </div>
     </div>
   </div>
+
+  {{-- Modal Hapus hanya untuk Admin --}}
+  @if (auth()->user()->jabatan === 'Admin')
+    @include('document.surat.modal')
+  @endif
 @endsection

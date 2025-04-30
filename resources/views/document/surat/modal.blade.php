@@ -10,6 +10,7 @@
             <span aria-hidden="true" class="text-white">&times;</span>
           </button>
         </div>
+
         <div class="modal-body">
           <div class="row mb-2">
             <div class="col-5 font-weight-bold">Jenis Surat</div>
@@ -20,12 +21,12 @@
             <div class="col-7">: {{ $surat->perihal }}</div>
           </div>
           <div class="row mb-2">
-            <div class="col-5 font-weight-bold">No. Surat</div>
+            <div class="col-5 font-weight-bold">No Surat</div>
             <div class="col-7">: {{ $surat->no_surat }}</div>
           </div>
           <div class="row mb-2">
-            <div class="col-5 font-weight-bold">Tanggal Surat</div>
-            <div class="col-7">: {{ $surat->tanggal_surat }}</div>
+            <div class="col-5 font-weight-bold">Tanggal</div>
+            <div class="col-7">: {{ \Carbon\Carbon::parse($surat->tanggal_surat)->format('d-m-Y') }}</div>
           </div>
           <div class="row mb-2">
             <div class="col-5 font-weight-bold">Ditujukan</div>
@@ -34,12 +35,12 @@
           <div class="row mb-2">
             <div class="col-5 font-weight-bold">File</div>
             <div class="col-7">:
-              <a href="{{ asset('storage/' . $surat->file_surat) }}" target="_blank" class="badge badge-info">
-                Lihat File
-              </a>
+              <a href="{{ asset('storage/' . $surat->file_surat) }}" target="_blank" class="badge badge-info">Lihat
+                File</a>
             </div>
           </div>
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">
             <i class="fas fa-times"></i> Tutup

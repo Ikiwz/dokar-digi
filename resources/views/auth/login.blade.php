@@ -21,10 +21,10 @@
   <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
   <style>
-    body.bg-gradient-primary {
+    /* body.bg-gradient-primary {
       background: url('path/to/your-image.jpg') no-repeat center center fixed;
       background-size: cover;
-    }
+    } */
   </style>
 
 </head>
